@@ -1,0 +1,400 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+  Jekyll integration by somiibo.com
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+<title>Notes I got from Max D</title>
+<meta name="description" content="">
+
+<link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/icon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/icon/favicon-16x16.png">
+<link rel="manifest" href="/assets/icon/manifest.json">
+<link rel="mask-icon" href="/assets/icon/safari-pinned-tab.svg" color="#5bbad5">
+<link rel="shortcut icon" href="/assets/icon/favicon.ico">
+<meta name="msapplication-config" content="/assets/icon/browserconfig.xml">
+<meta name="theme-color" content="#ffffff">
+
+<!-- CSS -->
+<link rel="stylesheet" href="/assets/css/main.css" />
+<noscript><link rel="stylesheet" href="/assets/css/noscript.css" /></noscript>
+
+	</head>
+	<body class="is-loading">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Header -->
+        <header id="header">
+          <a href="/" class="logo">My Notes</a>
+        </header>
+
+				<!-- Nav -->
+					<nav id="nav">
+
+            <ul class="links">
+  <li class=""><a href="/">Theme Home</a></li>
+  <li class=""><a href="/about/">About</a></li>
+  <li class=" active "><a href="/blog/">Blog</a></li>
+  <li class=""><a href="/elements/">Elements Reference</a></li>
+</ul>
+
+<ul class="icons">
+  <li><a href="https://twitter.com/default" class="icon fa-twitter" rel="nofollow"><span class="label">Twitter</span></a></li>
+  <li><a href="https://facebook.com/default" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li>
+  <li><a href="https://instagram.com/default" class="icon fa-instagram" rel="nofollow"><span class="label">Instagram</span></a></li>
+  <li><a href="https://github.com/default" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+</ul>
+
+						
+					</nav>
+
+				<!-- Main -->
+				<div id="main">
+          <section class="post">
+    				<header class="major">
+      				<span class="date">20 Apr 2020</span>
+      				<h1>Notes I got from Max D</h1>
+      				<p>Thanks to Max.D I was able to get this handy notes from him</p>
+      			</header>
+      			<div class="image main"><img src="" alt=""></div>
+      			<p><p>¯_(ツ)_/¯</p>
+<h1 id="kibana">kibana</h1>
+<p>external_api:checkout AND action:charge AND status:FAILED AND “internal server error”</p>
+
+<p>https://logs.patreontools.com/_plugin/kibana/app/kibana#/discover?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-90d,mode:quick,to:now))&amp;_a=(columns:!(_source),index:e902eac0-7423-11e8-8555-ef5c87a05a51,interval:auto,query:(language:lucene,query:’external_api:checkout%20AND%20action:charge%20AND%20status:FAILED%20AND%20%22internal%20server%20error%22’),sort:!(ts,desc))</p>
+
+<h1 id="apm-trace">apm trace</h1>
+<p>https://app.datadoghq.com/apm/resource/patreon.daemon.payments-worker/patreon.daemon_framework.worker_daemon.do_work/7fb0f0fa80c82952?end=1586486943289&amp;env=production&amp;graphType=flamegraph&amp;index=apm-search&amp;paused=false&amp;query=%40patreon.uuid%3A5ed58f6a-12be-4f5a-8af9-9cf3f5ff830d&amp;start=1586483343289</p>
+
+<p>verification email: verification_factor_email
+https://www.patreon.com/auth/verify-device?token=7Aw24OTde2FO3WGMDUl8Ss1n-zc5kLurV3g7s_OfhA4&amp;u=32187</p>
+
+<h1 id="main">Main</h1>
+<div class="highlighter-rouge"><pre class="highlight"><code>mysql-main-production-writer.internal.patreon.com
+
+mysql-main-production-reader.internal.patreon.com
+
+mysql-payments-production-writer.internal.patreon.com
+
+mysql-payments-production-reader.internal.patreon.com
+</code></pre>
+</div>
+
+<p>while true; do devx sync; sleep 5; done
+PMM</p>
+
+<h1 id="restart-mysql-serverfault">restart mysql serverfault</h1>
+<p>sudo /etc/init.d/mysql restart</p>
+
+<p>/etc/datadog-agent/conf.d/mysql.d/check.yaml</p>
+
+<h3 id="devx-run-single-test">devx run single test</h3>
+<p>devx pytest – test/app/api/routes/test_payment.py::TestGetPayments::test_get_filtered_payments
+PATREON_PY_CONFIG_PATH=/etc/patreon/testing.yml py.test /opt/code/patreon_py/file_name_py</p>
+
+<p>devx run script in test mode locally
+PATREON_PY_CONFIG_PATH=/etc/patreon/testing.yml patreon_repl file_name_py</p>
+
+<p>in a prod scripts box</p>
+
+<p>show provision logs
+less /var/log/provision.log</p>
+
+<p>show all logs
+journalctl -e | less</p>
+
+<p>./launchbot.py -e production -s payments-worker:24</p>
+
+<p>./launchbot.py -e development -s partitioned-queuer:2
+./deploybot.py -e development -g python.partitioned-queuer ‘LOAD-TEST-20191122-01’</p>
+
+<p>show all payments-* logs
+journalctl -u cron* –since “2019-08-05”  | less
+journalctl -u cron-runner* –since “2019-08-05”  | less
+journalctl -u session* –since “2020-04-09”  | less</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>journalctl -u septoria* –since “2020-04-20”</td>
+      <td>less</td>
+    </tr>
+    <tr>
+      <td>journalctl -u payments* –since “2020-04-21”</td>
+      <td>less</td>
+    </tr>
+    <tr>
+      <td>journalctl -u partitioned* –since “2019-11-27”</td>
+      <td>less</td>
+    </tr>
+    <tr>
+      <td>journalctl -u claus-external*</td>
+      <td>less</td>
+    </tr>
+    <tr>
+      <td>journalctl -u argus*</td>
+      <td>less</td>
+    </tr>
+    <tr>
+      <td>journalctl -u rollups-worker* –since “2019-06-03”</td>
+      <td>less</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="enable-debug-logging-gunicorn">Enable debug logging gunicorn</h2>
+<p>–log-level debug</p>
+
+<p>vim /etc/systemd/system/patreonweb.service
+sudo systemctl daemon-reload
+sudo systemctl restart patreonweb</p>
+
+<p>show all payments workers running
+./ec2_server_list.py | egrep ‘(partitioned-queuer|payments-worker|payment-response-worker|rollsup|webapi).<em>running.</em>x-development’
+./ec2_server_list.py | egrep ‘(partitioned-queuer|payments-worker).<em>running.</em>x-production’
+./ec2_server_list.py | egrep ‘(crons-prod).<em>running.</em>x-production’
+./ec2_server_list.py | egrep ‘(septoria).<em>running.</em>x-production’</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>./ec2_server_list.py</td>
+      <td>egrep ‘(rollups).<em>running.</em>x-production’</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>deploy to all
+./deploybot.py -e development -g python.partitioned-queuer,payments-worker,payment-response-worker load-test-dec-2019</p>
+
+<p>KILL a payments workers
+./launchbot.py -ri partitioned-queuer:i-055d5e764918856d2
+./launchbot.py -ri payments-worker:i-0e55242f19a55cd73
+./launchbot.py -ri argus-production:i-0558271e058b4c67d
+./launchbot.py -ri claus-external:i-0cf8f6946bdb4a6d7
+./launchbot.py -ri claus-internal:i-04a85fcb6a534144f
+./launchbot.py -ri pubsub-auditor:i-0ee36b200a1d8e9f3
+./launchbot.py -ri webapi:i-051562c3aa8f751b6</p>
+
+<p>./launchbot.py -ri prod-scripts-honeybadger902:i-0082e3315fab4b065</p>
+
+<p>deploy to specific machines
+./deploybot.py <your sha=""> -g python.rollups-worker</your></p>
+
+<p>set count 
+./launchbot.py -s payments-worker:4
+./launchbot.py -s partitioned-queuer:2
+./launchbot.py -s claus-internal:4
+./launchbot.py -s claus-external:4
+./launchbot.py -s rollups-worker:12
+./launchbot.py -s rollups-cleaner:4</p>
+
+<p>./launchbot.py -s webapi:50</p>
+
+<p>./launchbot.py -s claus-external:1 -e development
+./launchbot.py -s payments-worker:1 -e development
+./launchbot.py -s partitioned-queuer:0 -e development</p>
+
+<p>provision a worker
+./launchbot.py -a payments-worker:23 -e development
+./launchbot.py -a partitioned-queuer:3 -e development
+./launchbot.py -a claus-internal:4</p>
+
+<p>restart service
+sudo systemctl restart partitioned-queuer.service
+sudo systemctl restart payments-worker.service
+sudo systemctl restart prod-scripts.service</p>
+
+<p>./deploybot.py –fast-operations restarts -g python.payments-worker</p>
+
+<p>Rebuild / relaunch
+deploybot will reprovision the hosts, updating the ansible and patreon_py branches
+./deploybot.py -g python.partitioned-queuer,payments-worker -e development</p>
+
+<p>launchbot –rebuild will tear down all of the machines and launch new ones
+./launchbot.py –rebuild  payments-worker -p <your ansible="" branch=""> -e development</your></p>
+
+<h2 id="sql-stuff">SQL stuff</h2>
+<p>sql alchemy verbose logging
+import logging
+logging.basicConfig()
+logging.getLogger(‘sqlalchemy.engine’).setLevel(logging.INFO)</p>
+
+<p>ALTER USER ‘payments’@’%’ IDENTIFIED BY ‘AM6xT4yaHfPVuDKHhtsgQC3ECf3BdV8T’;</p>
+
+<p>select count(*) from bills where status = ‘pending’ created_at = ‘2019-03-01 07:59:59’</p>
+
+<p>select * from txns t where t.failed_at is not null and t.created_at &gt;= ‘02-19-2019’ order by txn_id desc limit 10</p>
+
+<p>select count(*) from txns where state = ‘queued’
+select * from bill_payments where txn_id = 113125304
+select * from txns where txn_id = 113125304</p>
+
+<p>select * from txns where txn_id = 114005719</p>
+
+<p>show open tables from patreon where In_use = true</p>
+
+<p>show processlist</p>
+
+<p>SELECT * FROM information_schema.processlist WHERE <code class="highlighter-rouge">STATE</code> LIKE ‘waiting%’;</p>
+
+<p>select CONCAT(‘CALL mysql.rds_kill(‘, ID, ‘);’)  from INFORMATION_SCHEMA.PROCESSLIST where State like ‘Waiting for table metadata lock%’ and User = ‘patreonapp’ order by TIME DESC;</p>
+
+<p>select CONCAT(‘CALL mysql.rds_kill(‘, ID, ‘);’)  from INFORMATION_SCHEMA.PROCESSLIST where Command = ‘Sleep’ order by TIME DESC;</p>
+
+<p>select * from txns where txn_id in (110406886, 110893532)</p>
+
+<p>select * from transaction_state_history_log where txn_id = 110893532
+CALL mysql.rds_kill(6567)</p>
+
+<p>SHOW ENGINE INNODB STATUS</p>
+
+<h1 id="show-all-open-txns">show all open txns</h1>
+<p>SELECT * FROM information_schema.innodb_trx</p>
+
+<p>show variables</p>
+
+<p>select count(distinct left(host,instr(host,’:’)-1)) from processlist ;
+select count(<em>), left(host,instr(host,’:’)-1) from processlist group by left(host,instr(host,’:’)-1) order by count(</em>) desc limit 20;</p>
+
+<p>select INDEX_NAME, COUNT_STAR, round(SUM_TIMER_WAIT/pow(10,12),1) stw_s
+from performance_schema.table_io_waits_summary_by_index_usage
+where OBJECT_SCHEMA=’patreon’ and OBJECT_NAME=’bills’ order by count_star desc limit 100;</p>
+
+<p>check long runnign queries
+SELECT ID, USER, LEFT(HOST, ( LOCATE( ‘:’, HOST ) - 1 ) ) AS HOST, COMMAND, TIME, REPLACE(SUBSTRING(info,1,50),”\n”,””) info_50 FROM INFORMATION_SCHEMA.PROCESSLIST WHERE COMMAND NOT LIKE ‘Binlog Dump%’ and COMMAND NOT LIKE ‘Sleep’ ORDER BY TIME DESC LIMIT 20;</p>
+
+<p>show status where <code class="highlighter-rouge">variable_name</code> = ‘Threads_connected’;</p>
+
+<p>SHOW GLOBAL STATUS;</p>
+
+<p>Show framentation  of tables
+./launchbot.py -ri argus-production:i-0484780d00371648f
+https://serverfault.com/questions/202000/how-find-and-fix-fragmented-mysql-tablesz</p>
+
+<p>Percona monitoring
+centos@172.31.12.209</p>
+
+<p>alias patreon_repl=’PYTHONPATH=/opt/code/patreon_py /opt/code/patreon_py/venv/bin/python’</p>
+
+</p>
+      		</section>
+
+          <div class="comments-wrapper">
+          <div id="disqus_thread"></div>
+          <script>
+              /**
+               *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+               *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+               */
+
+              var disqus_config = function () {
+                  this.page.url = '/blog/notes-from-maxd/';  /*Replace PAGE_URL with your page's canonical URL variable*/
+                  this.page.identifier = '/blog/notes-from-maxd/'; /*Replace PAGE_IDENTIFIER with your page's unique identifier variable*/
+              };
+
+              (function() {  /* dont endit below this line */
+                  var d = document, s = d.createElement('script');
+
+                  s.src = 'https://default.disqus.com/embed.js';
+
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+              })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+        </div><!-- /.comments-wrapper -->
+
+
+					<!-- Footer -->
+						<footer>
+              <ul class="actions">
+                <li><a href="/blog/" class="button">Our Blog</a></li>
+              </ul>
+						</footer>
+					</div>
+
+				<!-- Footer -->
+        <footer id="footer">
+  <section>
+    <form method="POST" action="https://api.slapform.com/info@default.com">
+      <div class="field">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" />
+      </div>
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" name="slap_replyto" id="email" /> <!-- slap_replyto will set the reply-to as the submitter's email! -->
+      </div>
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea name="message" id="message" rows="3"></textarea>
+      </div>
+      <ul class="actions">
+        <li><input type="submit" value="Send Message" /></li>
+      </ul>
+      <input type="hidden" name="slap_redirect" value="/thank-you" /> <!-- slap_redirect allows you to set a custom redirect/thank you page -->
+    </form>
+  </section>
+  <section class="split contact">
+    <section class="alt">
+      <h3>Location</h3>
+      <p>San Francisco, CA</p>
+    </section>
+    <section>
+      <h3>Phone</h3>
+      <p><a href="tel:xxx-xxx-xxxx">xxx-xxx-xxxx</a></p>
+    </section>
+    <section>
+      <h3>Email</h3>
+      <p><a href="mailto:info@default.com">info@default.com</a></p>
+    </section>
+    <section>
+      <h3>Social</h3>
+      <ul class="icons alt">
+        <li><a href="https://twitter.com/default" class="icon fa-twitter" rel="nofollow"><span class="label">Twitter</span></a></li>
+        <li><a href="https://facebook.com/default" class="icon fa-facebook" rel="nofollow"><span class="label">Facebook</span></a></li>
+        <li><a href="https://instagram.com/default" class="icon fa-instagram" rel="nofollow"><span class="label">Instagram</span></a></li>
+        <li><a href="https://github.com/default" class="icon fa-github" rel="nofollow"><span class="label">GitHub</span></a></li>
+      </ul>
+    </section>
+  </section>
+</footer>
+<!-- Copyright -->
+<div id="copyright">
+  <ul><li>&copy; HTML5 UP</li><li>Design by <a href="https://html5up.net" rel="nofollow">HTML5 UP</a></li><li>Jekyll Integration by <a href="https://slapform.com">Slapform</a> </li></ul>
+</div>
+
+
+			</div>
+
+      <!-- Scripts -->
+  		<!-- DYN -->
+<script src="/assets/js/jquery.min.js"></script>
+<script src="/assets/js/jquery.scrollex.min.js"></script>
+<script src="/assets/js/jquery.scrolly.min.js"></script>
+<script src="/assets/js/skel.min.js"></script>
+<script src="/assets/js/util.js"></script>
+<script src="/assets/js/main.js"></script>
+
+			<script async src="https://www.googletagmanager.com/gtag/js?id=default"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments)};
+  gtag('js', new Date());
+
+  gtag('config', 'default');
+</script>
+
+
+	</body>
+</html>
