@@ -1,4 +1,24 @@
-<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-05-03T07:23:35-07:00</updated><id>/</id><title type="html">My Notes</title><subtitle></subtitle><entry><title type="html">Devx command ref</title><link href="/blog/git-command-ref/" rel="alternate" type="text/html" title="Devx command ref" /><published>2020-05-03T00:00:00-07:00</published><updated>2020-05-03T00:00:00-07:00</updated><id>/blog/git-command-ref</id><content type="html" xml:base="/blog/git-command-ref/"></content><summary type="html">This is the list of commands useful to work with Devx</summary></entry><entry><title type="html">Devx command ref</title><link href="/blog/devx-commands/" rel="alternate" type="text/html" title="Devx command ref" /><published>2020-05-03T00:00:00-07:00</published><updated>2020-05-03T00:00:00-07:00</updated><id>/blog/devx-commands</id><content type="html" xml:base="/blog/devx-commands/">&lt;h1 id=&quot;devx-command-ref&quot;&gt;Devx command ref&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xml" href="/feed.xslt.xml"?><feed xmlns="http://www.w3.org/2005/Atom"><generator uri="http://jekyllrb.com" version="3.2.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2020-05-17T11:16:59-07:00</updated><id>/</id><title type="html">My Notes</title><subtitle></subtitle><entry><title type="html">Git commands Ref</title><link href="/blog/git-command-ref/" rel="alternate" type="text/html" title="Git commands Ref" /><published>2020-05-15T00:00:00-07:00</published><updated>2020-05-15T00:00:00-07:00</updated><id>/blog/git-command-ref</id><content type="html" xml:base="/blog/git-command-ref/">&lt;h3 id=&quot;get-latest-code-from-remote-for-all-branches&quot;&gt;Get latest code from remote for all branches&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git fetch&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;rebase-current-branch-on-master&quot;&gt;Rebase current branch on master&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git rebase origin/master&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;replace-a-folder-or-file-from-master&quot;&gt;Replace a folder or file from master&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout origin/master &amp;lt;filepath&amp;gt;&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;pull-all-files-from-a-branch-but-not-commits&quot;&gt;Pull all files from a branch (but not commits)&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git checkout f-ed-up-branch --&lt;/code&gt;
+This will pull all the files from the messed up branch and dumps them on a current branch as changes.&lt;/p&gt;
+
+&lt;h3 id=&quot;how-to-ammend-a-commit&quot;&gt;How to ammend a commit&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git commit --amend&lt;/code&gt; this will amend the previous commit with the current changes. Needs a Force push.&lt;/p&gt;
+
+&lt;h3 id=&quot;git-force-push&quot;&gt;Git force push&lt;/h3&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;git push --force&lt;/code&gt;&lt;/p&gt;</content><summary type="html">List of useful GIT commands</summary></entry><entry><title type="html">Devx command ref</title><link href="/blog/devx-commands/" rel="alternate" type="text/html" title="Devx command ref" /><published>2020-05-03T00:00:00-07:00</published><updated>2020-05-03T00:00:00-07:00</updated><id>/blog/devx-commands</id><content type="html" xml:base="/blog/devx-commands/">&lt;ul id=&quot;markdown-toc&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#devx-testing-files&quot; id=&quot;markdown-toc-devx-testing-files&quot;&gt;Devx testing files&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#tail-devx-logs&quot; id=&quot;markdown-toc-tail-devx-logs&quot;&gt;Tail devx logs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;h2 id=&quot;devx-testing-files&quot;&gt;Devx testing files&lt;/h2&gt;
 &lt;ul&gt;
@@ -10,6 +30,15 @@
   &lt;li&gt;To run the test in debug
 &lt;code class=&quot;highlighter-rouge&quot;&gt;devx pytest -s &amp;lt;path_to_test_file&amp;gt;&lt;/code&gt;
 Add the command &lt;code class=&quot;highlighter-rouge&quot;&gt;import ipdb; ipdb.set_trace()&lt;/code&gt; at the line you want to debug&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;tail-devx-logs&quot;&gt;Tail devx logs&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;Login to the devx using &lt;code class=&quot;highlighter-rouge&quot;&gt;devx attach&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To tail all logs &lt;code class=&quot;highlighter-rouge&quot;&gt;journalctl -f&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To tail logs of specific  service &lt;code class=&quot;highlighter-rouge&quot;&gt;journalctl -u devx-* -f&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To view logs in less &lt;code class=&quot;highlighter-rouge&quot;&gt;journalctl -u devx-* -n 10000 | less&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;To see the list of devx services &lt;code class=&quot;highlighter-rouge&quot;&gt;systemctl list-unit-files --all | grep devx&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;</content><summary type="html">This is the list of commands useful to work with Devx</summary></entry><entry><title type="html">Notes I got from Max D</title><link href="/blog/notes-from-maxd/" rel="alternate" type="text/html" title="Notes I got from Max D" /><published>2020-04-20T00:00:00-07:00</published><updated>2020-04-20T00:00:00-07:00</updated><id>/blog/notes-from-maxd</id><content type="html" xml:base="/blog/notes-from-maxd/">&lt;p&gt;¯_(ツ)_/¯&lt;/p&gt;
 &lt;h1 id=&quot;kibana&quot;&gt;kibana&lt;/h1&gt;
 &lt;p&gt;external_api:checkout AND action:charge AND status:FAILED AND “internal server error”&lt;/p&gt;

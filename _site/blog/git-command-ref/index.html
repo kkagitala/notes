@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 
-<title>Devx command ref</title>
+<title>Git commands Ref</title>
 <meta name="description" content="">
 
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/icon/apple-touch-icon.png">
@@ -61,12 +61,29 @@
 				<div id="main">
           <section class="post">
     				<header class="major">
-      				<span class="date">03 May 2020</span>
-      				<h1>Devx command ref</h1>
-      				<p>This is the list of commands useful to work with Devx</p>
+      				<span class="date">15 May 2020</span>
+      				<h1>Git commands Ref</h1>
+      				<p>List of useful GIT commands</p>
       			</header>
       			<div class="image main"><img src="" alt=""></div>
-      			<p>
+      			<p><h3 id="get-latest-code-from-remote-for-all-branches">Get latest code from remote for all branches</h3>
+<p><code class="highlighter-rouge">git fetch</code></p>
+
+<h3 id="rebase-current-branch-on-master">Rebase current branch on master</h3>
+<p><code class="highlighter-rouge">git rebase origin/master</code></p>
+
+<h3 id="replace-a-folder-or-file-from-master">Replace a folder or file from master</h3>
+<p><code class="highlighter-rouge">git checkout origin/master &lt;filepath&gt;</code></p>
+
+<h3 id="pull-all-files-from-a-branch-but-not-commits">Pull all files from a branch (but not commits)</h3>
+<p><code class="highlighter-rouge">git checkout f-ed-up-branch --</code>
+This will pull all the files from the messed up branch and dumps them on a current branch as changes.</p>
+
+<h3 id="how-to-ammend-a-commit">How to ammend a commit</h3>
+<p><code class="highlighter-rouge">git commit --amend</code> this will amend the previous commit with the current changes. Needs a Force push.</p>
+
+<h3 id="git-force-push">Git force push</h3>
+<p><code class="highlighter-rouge">git push --force</code></p>
 </p>
       		</section>
 

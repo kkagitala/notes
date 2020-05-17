@@ -66,7 +66,10 @@
       				<p>This is the list of commands useful to work with Devx</p>
       			</header>
       			<div class="image main"><img src="" alt=""></div>
-      			<p><h1 id="devx-command-ref">Devx command ref</h1>
+      			<p><ul id="markdown-toc">
+  <li><a href="#devx-testing-files" id="markdown-toc-devx-testing-files">Devx testing files</a></li>
+  <li><a href="#tail-devx-logs" id="markdown-toc-tail-devx-logs">Tail devx logs</a></li>
+</ul>
 
 <h2 id="devx-testing-files">Devx testing files</h2>
 <ul>
@@ -79,6 +82,16 @@
 <code class="highlighter-rouge">devx pytest -s &lt;path_to_test_file&gt;</code>
 Add the command <code class="highlighter-rouge">import ipdb; ipdb.set_trace()</code> at the line you want to debug</li>
 </ul>
+
+<h2 id="tail-devx-logs">Tail devx logs</h2>
+<ul>
+  <li>Login to the devx using <code class="highlighter-rouge">devx attach</code></li>
+  <li>To tail all logs <code class="highlighter-rouge">journalctl -f</code></li>
+  <li>To tail logs of specific  service <code class="highlighter-rouge">journalctl -u devx-* -f</code></li>
+  <li>To view logs in less <code class="highlighter-rouge">journalctl -u devx-* -n 10000 | less</code></li>
+  <li>To see the list of devx services <code class="highlighter-rouge">systemctl list-unit-files --all | grep devx</code></li>
+</ul>
+
 </p>
       		</section>
 
